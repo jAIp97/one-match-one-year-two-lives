@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Für uns 💛</title>
+
+  <!-- Prevent search indexing (works for most crawlers) -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <style>
+    :root{
+      /* Bumble-ish */
+      --bumble:#FFCC00;
+      --ink:#111318;
+      --night:#0f1116;
+
+      /* Moroccan-ish */
+      --saffron:#F6C65B;
+      --terracotta:#C65A3A;
+      --mint:#2EC4B6;
+      --indigo:#2B2D8F;
+
+      /* UI */
+      --card: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.12);
+      --muted: rgba(255,255,255,.72);
+      --shadow: 0 18px 44px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: #fff;
+      background: var(--night);
+      overflow:hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Moroccan geometric vibe (pure CSS gradients) */
+    .bg{
+      position:fixed; inset:0;
+      background:
+        radial-gradient(900px 520px at 18% 8%, rgba(255,204,0,.18), transparent 60%),
+        radial-gradient(860px 520px at 85% 18%, rgba(46,196,182,.13), transparent 60%),
+        radial-gradient(900px 700px at 50% 120%, rgba(198,90,58,.16), transparent 60%),
+
+        /* tile-ish pattern */
+        linear-gradient(45deg, rgba(255,255,255,.06) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.06) 75%, rgba(255,255,255,.06)),
+        linear-gradient(-45deg, rgba(255,255,255,.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05)),
+        linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      background-size:
+        auto, auto, auto,
+        48px 48px,
+        48px 48px,
+        auto;
+      background-position:
+        center, center, center,
+        0 0,
+        0 24px,
+        center;
+      filter: saturate(1.08);
+    }
+    .bg:after{
+      content:"";
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(255,204,0,.09) 0 2px, transparent 3px),
+        radial-gradient(circle at 65% 35%, rgba(255,255,255,.06) 0 1px, transparent 2px),
+        radial-gradient(circle at 45% 70%, rgba(46,196,182,.08) 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 60%, rgba(198,90,58,.08) 0 2px, transparent 3px);
+      background-size: 220px 220px;
+      opacity:.9;
+      animation: drift 14s linear infinite;
+    }
+    @keyframes drift{
+      0%{ transform: translate3d(0,0,0); }
+      100%{ transform: translate3d(-40px, -30px, 0); }
+    }
+
+    /* App container */
+    .app{
+      position:relative;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 22px 18px;
+    }
+
+    /* Card */
+    .card{
+      width:min(680px, 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(600px 260px at 20% 0%, rgba(255,204,0,.18), transparent 60%),
+                  radial-gradient(540px 240px at 90% 10%, rgba(46,196,182,.10), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 16px 10px;
+      position:relative;
+      z-index:1;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+      background: rgba(10,12,18,.20);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .mark{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--bumble);
+      box-shadow: 0 0 0 6px rgba(255,204,0,.16);
+    }
+    .sub{
+      font-size:12px;
+      color: var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .chip{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color: rgba(255,255,255,.82);
+    }
+
+    .content{
+      position:relative;
+      z-index:1;
+      padding: 18px 16px 18px;
+      min-height: 520px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    /* Progress dots */
+    .progress{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      padding: 10px 0 2px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+    .dot.active{
+      background: var(--bumble);
+      border-color: rgba(255,204,0,.65);
+      transform: scale(1.15);
+    }
+
+    /* Scene layout */
+    .scene{
+      display:none;
+      flex:1;
+      padding: 10px 6px 0;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      animation: sceneIn .45s ease both;
+    }
+    .scene.active{ display:flex; }
+    @keyframes sceneIn{
+      from{ opacity:0; transform: translateY(8px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .stack{
+      width:min(560px,100%);
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:center;
+    }
+
+    .title{
+      font-size:22px;
+      font-weight:900;
+      line-height:1.15;
+      letter-spacing:.2px;
+      margin:0;
+    }
+    .text{
+      margin:0;
+      font-size:15.5px;
+      line-height:1.55;
+      color: rgba(255,255,255,.86);
+    }
+    .muted{
+      color: var(--muted);
+      font-size:12.5px;
+      line-height:1.4;
+    }
+
+    /* Footer hint */
+    .hint{
+      display:flex;
+      justify-content:center;
+      padding-top: 2px;
+      font-size:12px;
+      color: rgba(255,255,255,.70);
+      opacity:.95;
+      user-select:none;
+    }
+    .hint b{ color:#fff; }
+    .hint .tap{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      padding:8px 10px;
+      border-radius: 999px;
+    }
+    .tapDot{
+      width:7px; height:7px; border-radius:999px;
+      background: var(--bumble);
+      box-shadow: 0 0 0 5px rgba(255,204,0,.14);
+    }
+
+    /* Buttons for password */
+    .pwWrap{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 8px;
+    }
+    .pwBtn{
+      width:100%;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color:#fff;
+      font-size:16px;
+      font-weight:850;
+      letter-spacing:.2px;
+      cursor:pointer;
+      transition: transform .06s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease, opacity .25s ease;
+    }
+    .pwBtn:hover{ background: rgba(255,255,255,.07); }
+    .pwBtn:active{ transform: translateY(1px); }
+    .pwBtn.good{
+      /* neutralized: previously revealed the correct answer */
+      border-color: rgba(255,255,255,.14);
+      box-shadow: none;
+    }
+    .pwBtn.fadeOut{ opacity:.18; }
+
+    .pwMsg{
+      min-height: 44px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 8px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.88);
+      font-size: 13.5px;
+      line-height:1.35;
+      margin-top: 8px;
+      opacity:0;
+      transform: translateY(6px);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .pwMsg.show{ opacity:1; transform: translateY(0); }
+    .shake{ animation: shake .25s ease; }
+    @keyframes shake{
+      0%{ transform: translateX(0); }
+      25%{ transform: translateX(-6px); }
+      55%{ transform: translateX(5px); }
+      100%{ transform: translateX(0); }
+    }
+
+    /* Visual blocks */
+    .visual{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height: 140px;
+    }
+
+    /* Bee animation (pure CSS + small SVG shapes) */
+    .bees{
+      position:relative;
+      width: 220px;
+      height: 140px;
+      margin: 0 auto;
+    }
+    .bee{
+      position:absolute;
+      width: 44px;
+      height: 30px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+    }
+    .bee .body{
+      position:absolute; inset:0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2b2b2b 0 12%, var(--bumble) 12% 34%, #2b2b2b 34% 52%, var(--bumble) 52% 74%, #2b2b2b 74% 100%);
+      border: 1px solid rgba(0,0,0,.35);
+    }
+    .bee .wing{
+      position:absolute;
+      width: 22px; height: 18px;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      top: -8px;
+      animation: flap .18s ease-in-out infinite alternate;
+    }
+    .bee .wing.w1{ left: 8px; transform: rotate(-18deg); }
+    .bee .wing.w2{ left: 18px; transform: rotate(18deg); opacity:.85; }
+    @keyframes flap{
+      from{ transform: translateY(0) rotate(-14deg) scale(1); opacity:.85; }
+      to{ transform: translateY(1px) rotate(-24deg) scale(1.03); opacity:.65; }
+    }
+    .bee:after{
+      content:"";
+      position:absolute;
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: #111;
+      right: 6px;
+      top: 12px;
+      opacity:.8;
+    }
+
+    /* Flight paths */
+    .bee.a{ animation: beeA 2.2s ease-in-out forwards; }
+    .bee.b{ animation: beeB 2.2s ease-in-out forwards; }
+    @keyframes beeA{
+      0%{ transform: translate(-160%,-50%) rotate(-10deg); }
+      35%{ transform: translate(-65%,-65%) rotate(12deg); }
+      65%{ transform: translate(-40%,-35%) rotate(-8deg); }
+      100%{ transform: translate(-75%,-50%) rotate(0deg); }
+    }
+    @keyframes beeB{
+      0%{ transform: translate(60%,-50%) rotate(10deg); }
+      35%{ transform: translate(10%,-35%) rotate(-12deg); }
+      65%{ transform: translate(-10%,-65%) rotate(8deg); }
+      100%{ transform: translate(-25%,-50%) rotate(0deg); }
+    }
+
+    /* Orbit effect once they arrive */
+    .orbit{
+      position:absolute; left:50%; top:50%;
+      width: 120px; height: 120px;
+      transform: translate(-50%,-50%);
+      border-radius: 999px;
+      border: 1px dashed rgba(255,204,0,.22);
+      opacity:0;
+      animation: orbitIn .8s ease forwards 1.9s, spin 3.2s linear infinite 2.7s;
+    }
+    @keyframes orbitIn{
+      to{ opacity:.9; }
+    }
+    @keyframes spin{
+      from{ transform: translate(-50%,-50%) rotate(0deg); }
+      to{ transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    /* Imbiss: plates + talk bubbles + clock fill */
+    .imbiss{
+      width: 260px; height: 150px;
+      position:relative;
+      margin: 0 auto;
+    }
+    .plate{
+      position:absolute;
+      width: 70px; height: 70px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.04);
+      top: 58px;
+    }
+    .plate.p1{ left: 28px; }
+    .plate.p2{ right: 28px; }
+    .person{
+      position:absolute;
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: rgba(255,204,0,.95);
+      top: 82px;
+    }
+    .person.a{ left: 62px; }
+    .person.b{ right: 62px; }
+    .clock{
+      position:absolute;
+      left: 50%; top: 20px;
+      width: 54px; height: 54px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.14);
+      overflow:hidden;
+    }
+    .clock:before{
+      content:"";
+      position:absolute; inset:0;
+      background: conic-gradient(var(--mint) 0turn, rgba(46,196,182,.05) 0turn);
+      animation: timeFill 2.2s ease forwards;
+    }
+    @keyframes timeFill{
+      from{ background: conic-gradient(var(--mint) 0turn, rgba(46,196,182,.05) 0turn); }
+      to{ background: conic-gradient(var(--mint) 1turn, rgba(46,196,182,.05) 0turn); }
+    }
+    .bubbles span{
+      position:absolute;
+      width:6px; height:6px;
+      border-radius:999px;
+      background: rgba(255,255,255,.55);
+      opacity:.0;
+      animation: bubble 1.8s ease-in-out infinite;
+    }
+    .bubbles span:nth-child(1){ left: 52px; top: 48px; animation-delay:.1s; }
+    .bubbles span:nth-child(2){ left: 66px; top: 38px; animation-delay:.35s; }
+    .bubbles span:nth-child(3){ left: 80px; top: 46px; animation-delay:.6s; }
+    .bubbles span:nth-child(4){ right: 52px; top: 48px; animation-delay:.2s; }
+    .bubbles span:nth-child(5){ right: 66px; top: 38px; animation-delay:.45s; }
+    .bubbles span:nth-child(6){ right: 80px; top: 46px; animation-delay:.7s; }
+    @keyframes bubble{
+      0%{ opacity:0; transform: translateY(8px); }
+      35%{ opacity:.75; }
+      70%{ opacity:.55; transform: translateY(-8px); }
+      100%{ opacity:0; transform: translateY(-14px); }
+    }
+
+    /* Flohmarkt + Choco Kiss */
+    .market{
+      width: 280px; height: 160px;
+      position:relative;
+      margin: 0 auto;
+    }
+    .stall{
+      position:absolute;
+      left: 50%; top: 24px;
+      width: 190px; height: 70px;
+      transform: translateX(-50%);
+    }
+    .stall:before{
+      content:"";
+      position:absolute; left:0; right:0; top:0;
+      height: 26px;
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(255,204,0,.85) 0 14px,
+          rgba(255,255,255,.18) 14px 28px);
+      border-radius: 12px 12px 8px 8px;
+      border: 1px solid rgba(255,255,255,.18);
+      opacity:.9;
+    }
+    .stall:after{
+      content:"";
+      position:absolute; left: 18px; right: 18px; top: 26px; bottom:0;
+      border:1px solid rgba(255,255,255,.14);
+      border-top:none;
+      border-radius: 0 0 12px 12px;
+      background: rgba(255,255,255,.04);
+    }
+    .kiss{
+      position:absolute;
+      left: 50%; top: 105px;
+      transform: translateX(-50%);
+      width: 56px; height: 62px;
+      cursor:pointer;
+      transition: transform .12s ease;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,.35));
+    }
+    .kiss:active{ transform: translateX(-50%) translateY(1px) scale(.98); }
+    .kiss .cone{
+      position:absolute;
+      left: 50%; top: 10px;
+      width: 0; height: 0;
+      transform: translateX(-50%);
+      border-left: 22px solid transparent;
+      border-right: 22px solid transparent;
+      border-top: 40px solid rgba(198,90,58,.95);
+      filter: saturate(1.1);
+      border-radius: 8px;
+    }
+    .kiss .cap{
+      position:absolute;
+      left: 50%; top: 0px;
+      transform: translateX(-50%);
+      width: 46px; height: 22px;
+      background: rgba(246,198,91,.92);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+    }
+    .spark{
+      position:absolute;
+      left: 50%; top: 92px;
+      transform: translateX(-50%);
+      width: 160px; height: 80px;
+      pointer-events:none;
+      opacity:0;
+    }
+    .spark.show{ animation: popSpark .55s ease forwards; }
+    @keyframes popSpark{
+      0%{ opacity:0; transform: translateX(-50%) scale(.9); }
+      30%{ opacity:1; }
+      100%{ opacity:0; transform: translateX(-50%) scale(1.08); }
+    }
+    .spark i{
+      position:absolute;
+      width: 8px; height: 8px;
+      background: var(--bumble);
+      border-radius: 2px;
+      transform: rotate(45deg);
+      opacity:.9;
+      box-shadow: 0 0 0 6px rgba(255,204,0,.12);
+      animation: floatUp .6s ease forwards;
+    }
+    .spark i:nth-child(1){ left: 18px; top: 50px; }
+    .spark i:nth-child(2){ left: 68px; top: 22px; animation-delay:.06s; }
+    .spark i:nth-child(3){ left: 118px; top: 52px; animation-delay:.12s; }
+    @keyframes floatUp{
+      to{ transform: translateY(-22px) rotate(45deg); opacity:0; }
+    }
+
+    /* Travel + family icons (simple) */
+    .icons{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .ico{
+      width: 54px; height: 54px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 24px;
+      opacity:0;
+      transform: translateY(6px);
+      animation: stagger .55s ease forwards;
+    }
+    .ico:nth-child(1){ animation-delay:.05s; }
+    .ico:nth-child(2){ animation-delay:.18s; }
+    .ico:nth-child(3){ animation-delay:.31s; }
+    @keyframes stagger{
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    /* Hard moments: calm pulse line */
+    .pulse{
+      width: 280px;
+      height: 60px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.12);
+      border-radius: 18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .pulse svg{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+    }
+    .pulse path{
+      stroke: rgba(46,196,182,.9);
+      stroke-width: 2.4;
+      fill:none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 520;
+      stroke-dashoffset: 520;
+      animation: draw 2.1s ease-in-out infinite;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.3));
+    }
+    @keyframes draw{
+      0%{ stroke-dashoffset: 520; opacity:.2; }
+      35%{ opacity:.85; }
+      60%{ opacity:.85; }
+      100%{ stroke-dashoffset: 0; opacity:.15; }
+    }
+
+    /* Transition: join lines */
+    .join{
+      width: 240px;
+      height: 64px;
+      position:relative;
+    }
+    .join .l{
+      position:absolute;
+      top: 30px;
+      width: 92px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+    }
+    .join .l.left{ left: 10px; }
+    .join .l.right{ right: 10px; }
+    .join .mid{
+      position:absolute;
+      top: 30px;
+      left: 50%;
+      width: 0;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--bumble);
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 6px rgba(255,204,0,.12);
+      animation: connect .9s ease forwards;
+    }
+    @keyframes connect{
+      to{ width: 120px; }
+    }
+
+    /* Final: calendar + path draw */
+    .future{
+      width: 280px; height: 160px;
+      position:relative;
+      margin: 0 auto;
+    }
+    .cal{
+      position:absolute;
+      left: 16px; top: 18px;
+      width: 76px; height: 70px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      box-shadow: 0 12px 24px rgba(0,0,0,.25);
+      animation: pop .55s ease both;
+    }
+    @keyframes pop{
+      from{ opacity:0; transform: translateY(8px) scale(.98); }
+      to{ opacity:1; transform: translateY(0) scale(1); }
+    }
+    .cal .bar{
+      height: 18px;
+      background: rgba(255,204,0,.26);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .cal .num{
+      flex:1;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+      font-size: 28px;
+      color: rgba(255,255,255,.95);
+    }
+    .path{
+      position:absolute;
+      left: 92px; top: 16px;
+      width: 172px; height: 140px;
+    }
+    .path path{
+      stroke: rgba(198,90,58,.95);
+      stroke-width: 3;
+      fill:none;
+      stroke-linecap: round;
+      stroke-dasharray: 360;
+      stroke-dashoffset: 360;
+      animation: drawPath 1.25s ease forwards .15s;
+    }
+    @keyframes drawPath{ to{ stroke-dashoffset: 0; } }
+    .star{
+      position:absolute;
+      right: 18px; bottom: 26px;
+      width: 10px; height: 10px;
+      background: var(--bumble);
+      transform: rotate(45deg);
+      border-radius: 2px;
+      opacity:.0;
+      box-shadow: 0 0 0 8px rgba(255,204,0,.12);
+      animation: starGlow .9s ease forwards 1.15s;
+    }
+    @keyframes starGlow{
+      0%{ opacity:0; transform: rotate(45deg) scale(.8); }
+      60%{ opacity:1; transform: rotate(45deg) scale(1.1); }
+      100%{ opacity:.75; transform: rotate(45deg) scale(1.0); }
+    }
+
+    /* Small screen tweaks */
+    @media (max-width: 420px){
+      .content{ min-height: 560px; }
+      .title{ font-size: 20px; }
+      .text{ font-size: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg"></div>
+
+  <div class="app" id="app">
+    <div class="card" role="application" aria-label="Valentinstag Journey">
+      <div class="top">
+        <div class="brand">
+          <span class="mark"></span>
+          <span>Für uns</span>
+        </div>
+        <div class="sub">
+          <span class="chip" id="sceneLabel">Zugang</span>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="progress" id="progress"></div>
+
+        <!-- SCENE 0: PASSWORD -->
+        <section class="scene active" data-label="Zugang" data-index="0" id="scene0">
+          <div class="stack">
+            <div class="visual" aria-hidden="true">
+              <!-- Moroccan-ish ornament (simple SVG) -->
+              <svg width="240" height="120" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:.92">
+                <path d="M120 14 L142 36 L120 58 L98 36 Z" stroke="rgba(255,204,0,.75)" stroke-width="2"/>
+                <path d="M120 58 L142 80 L120 102 L98 80 Z" stroke="rgba(46,196,182,.55)" stroke-width="2"/>
+                <path d="M72 36 L94 58 L72 80 L50 58 Z" stroke="rgba(198,90,58,.65)" stroke-width="2"/>
+                <path d="M168 36 L190 58 L168 80 L146 58 Z" stroke="rgba(246,198,91,.55)" stroke-width="2"/>
+                <circle cx="120" cy="58" r="6" fill="rgba(255,255,255,.18)"/>
+              </svg>
+            </div>
+
+            <h1 class="title">Unser Anfang war nichts Besonderes.</h1>
+            <p class="text">
+              Und genau deshalb war er perfekt.<br/>
+              Ein Jahr später wollte ich dir<br/>etwas zeigen.
+            </p>
+
+            <p class="muted" style="margin-top:6px;"><b>Zugangspasswort</b><br/>Bitte wähle das richtige Wort.</p>
+
+            <div class="pwWrap" aria-label="Passwortauswahl">
+              <button class="pwBtn" data-pw="saha" type="button">Saha</button>
+              <button class="pwBtn good" data-pw="halouf" type="button">Halouf</button>
+              <button class="pwBtn" data-pw="finger" type="button">🖕</button>
+            </div>
+
+            <div class="pwMsg" id="pwMsg" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- SCENE 1 -->
+        <section class="scene" data-label="Match" data-index="1" id="scene1">
+          <div class="stack">
+            <div class="visual" aria-hidden="true">
+              <div class="bees">
+                <div class="orbit"></div>
+                <div class="bee a">
+                  <div class="wing w1"></div>
+                  <div class="wing w2"></div>
+                  <div class="body"></div>
+                </div>
+                <div class="bee b">
+                  <div class="wing w1"></div>
+                  <div class="wing w2"></div>
+                  <div class="body"></div>
+                </div>
+              </div>
+            </div>
+            <h1 class="title">Wir haben uns gematcht.</h1>
+            <p class="text"><b>Und ich habe dir geschrieben.</b></p>
+          </div>
+        </section>
+
+        <!-- SCENE 2 -->
+        <section class="scene" data-label="Imbiss" data-index="2" id="scene2">
+          <div class="stack">
+            <div class="visual" aria-hidden="true">
+              <div class="imbiss">
+                <div class="clock"></div>
+                <div class="bubbles">
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="plate p1"></div>
+                <div class="plate p2"></div>
+                <div class="person a"></div>
+                <div class="person b"></div>
+              </div>
+            </div>
+            <h1 class="title">Erstes Date in einem Imbiss.</h1>
+            <p class="text">
+              Und wir waren bestimmt die einzigen, die jemals so lange dort gesessen<br/>
+              und geredet haben.
+            </p>
+          </div>
+        </section>
+
+        <!-- SCENE 3 -->
+        <section class="scene" data-label="Flohmarkt" data-index="3" id="scene3">
+          <div class="stack">
+            <div class="visual" aria-hidden="true">
+              <div class="market">
+                <div class="stall"></div>
+                <div class="kiss" id="kiss" title="Tippe den Choco Kiss">
+                  <div class="cap"></div>
+                  <div class="cone"></div>
+                </div>
+                <div class="spark" id="spark">
+                  <i></i><i></i><i></i>
+                </div>
+              </div>
+            </div>
+            <h1 class="title">Unser zweites Treffen auf dem Flohmarkt…</h1>
+            <p class="text">
+              …werde ich nie vergessen wegen des <b>Choco Kiss</b>.<br/>
+              Und ab da ging alles so schnell.<br/>
+              <b>Mann, waren wir süß und albern.</b>
+            </p>
+            <p class="muted" id="kissHint">Tippe den Choco Kiss, dann geht’s weiter ✨</p>
+          </div>
+        </section>
+
+        <!-- SCENE 4 -->
+        <section class="scene" data-label="Wir" data-index="4" id="scene4">
+          <div class="stack">
+            <div class="visual" aria-hidden="true">
+              <div class="icons">
+                <div class="ico" aria-hidden="true">🫶</div>
+                <div class="ico" aria-hidden="true">🏠</div>
+                <div class="ico" aria-hidden="true">✈️</div>
+              </div>
+            </div>
+            <h1 class="title">Wir haben uns getroffen…</h1>
+            <p class="text">
+              …haben unsere Familien kennen gelernt,<br/>
+              sind verreist.
+            </p>
+          </div>
+        </section>
+
+        <!-- SCENE 5 -->
+        <section class="scene" data-label="Leben" data-index="5" id="scene5">
+          <div class="stack">
+            <div class="visual" aria-hidden="true">
+              <div class="pulse">
+                <svg viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 34 C28 34 36 34 52 34
+                           C62 34 66 12 76 12
+                           C86 12 92 48 102 48
+                           C112 48 116 34 128 34
+                           C144 34 154 34 170 34
+                           C182 34 186 20 196 20
+                           C206 20 212 44 224 44
+                           C236 44 242 34 280 34" />
+                </svg>
+              </div>
+            </div>
+            <h1 class="title">Aber auch andere Momente…</h1>
+            <p class="text">
+              …wie <b>Krankheiten</b> und <b>Kündigungen</b> haben wir schon gemeinsam erlebt.
+            </p>
+
+            <div class="visual" aria-hidden="true" style="min-height:74px;">
+              <div class="join">
+                <div class="l left"></div>
+                <div class="l right"></div>
+                <div class="mid"></div>
+              </div>
+            </div>
+
+            <p class="text">
+              <b>Aber wir haben alles zusammen geschafft</b><br/>
+              und du warst immer <b>stark</b> und <b>unterstützend</b>.<br/>
+              <b>Danke dafür &lt;3</b>
+            </p>
+          </div>
+        </section>
+
+        <!-- SCENE 6 -->
+        <section class="scene" data-label="Heute" data-index="6" id="scene6">
+          <div class="stack">
+            <div class="visual" aria-hidden="true">
+              <div class="future">
+                <div class="cal">
+                  <div class="bar"></div>
+                  <div class="num">1</div>
+                </div>
+                <svg class="path" viewBox="0 0 172 140" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 26 C44 8, 64 30, 86 40
+                           C112 52, 110 78, 92 90
+                           C68 106, 98 126, 150 112" />
+                </svg>
+                <div class="star"></div>
+              </div>
+            </div>
+
+            <h1 class="title">Heute ist ein Jahr vergangen seit unserem Match.</h1>
+            <p class="text">
+              Lass uns in eine gemeinsame Zukunft schauen<br/>
+              und den Weg zusammen gehen.<br/>
+              <b>Ich liebe dich!</b>
+            </p>
+          </div>
+        </section>
+
+        <div class="hint" id="hint">
+          <span class="tap"><span class="tapDot"></span> <span>Tippe, um weiterzugehen</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Scene control ---
+    const scenes = Array.from(document.querySelectorAll(".scene"));
+    const sceneLabel = document.getElementById("sceneLabel");
+    const progress = document.getElementById("progress");
+    const hint = document.getElementById("hint");
+
+    const pwMsg = document.getElementById("pwMsg");
+    const pwButtons = Array.from(document.querySelectorAll(".pwBtn"));
+    const kiss = document.getElementById("kiss");
+    const spark = document.getElementById("spark");
+    const kissHint = document.getElementById("kissHint");
+
+    let unlocked = false;
+    let idx = 0;
+
+    // Build progress dots (0..6) but hide them until unlocked (optional)
+    const total = scenes.length; // 7 including password
+    const dots = [];
+    for(let i=0;i<total;i++){
+      const d = document.createElement("div");
+      d.className = "dot" + (i===0 ? " active" : "");
+      progress.appendChild(d);
+      dots.push(d);
+    }
+
+    function setActive(i){
+      scenes.forEach(s => s.classList.remove("active"));
+      scenes[i].classList.add("active");
+      idx = i;
+
+      const label = scenes[i].dataset.label || "";
+      sceneLabel.textContent = label;
+
+      dots.forEach((d,k)=> d.classList.toggle("active", k===i));
+
+      // Hint behavior:
+      // - Scene 0: hide generic "tap to continue" (since password scene)
+      // - Scene 3: only continue after choco kiss tap
+      if(i === 0){
+        hint.style.visibility = "hidden";
+      } else if(i === 3){
+        hint.style.visibility = "visible";
+        hint.querySelector("span").lastChild.textContent = "Tippe den Choco Kiss";
+      } else {
+        hint.style.visibility = "visible";
+        hint.querySelector("span").lastChild.textContent = "Tippe, um weiterzugehen";
+      }
+
+      // restart spark class if needed
+      if(i !== 3){
+        spark.classList.remove("show");
+      }
+    }
+
+    function next(){
+      // Gate: must unlock first
+      if(!unlocked) return;
+
+      // Gate: Scene 3 requires Choco Kiss tap before continuing
+      if(idx === 3 && !kiss.dataset.tapped) return;
+
+      if(idx < total - 1){
+        setActive(idx + 1);
+      }
+    }
+
+    // --- Password logic ---
+    function showPw(text, ok=false){
+      pwMsg.textContent = text;
+      pwMsg.classList.add("show");
+      pwMsg.style.borderColor = ok ? "rgba(255,204,0,.35)" : "rgba(255,255,255,.12)";
+      pwMsg.style.background = ok ? "rgba(255,204,0,.10)" : "rgba(0,0,0,.18)";
+    }
+
+    pwButtons.forEach(btn=>{
+      btn.addEventListener("click", (e)=>{
+        const v = btn.dataset.pw;
+
+        // reset message animation
+        pwMsg.classList.remove("show");
+        void pwMsg.offsetWidth;
+
+        if(v === "halouf"){
+          showPw('Jaaa Babes, du dachtest doch nicht wirklich, dass es der „🖕“ Emoji ist :D', true);
+          unlocked = true;
+
+          // fade out other buttons
+          pwButtons.forEach(b=>{
+            if(b.dataset.pw !== "halouf") b.classList.add("fadeOut");
+          });
+
+          // small delay then move to scene 1
+          setTimeout(()=> setActive(1), 900);
+        } else {
+          showPw("Fast. Aber nicht richtig. Probiere es nochmal!", false);
+          // shake container
+          document.querySelector(".pwWrap").classList.remove("shake");
+          void document.querySelector(".pwWrap").offsetWidth;
+          document.querySelector(".pwWrap").classList.add("shake");
+        }
+      });
+    });
+
+    // --- Choco Kiss gate ---
+    kiss.dataset.tapped = "";
+    kiss.addEventListener("click", ()=>{
+      kiss.dataset.tapped = "yes";
+      spark.classList.remove("show");
+      void spark.offsetWidth;
+      spark.classList.add("show");
+      kissHint.textContent = "Okay… genau der Moment 😄 Tippe irgendwo für weiter.";
+      // update hint back to normal now that it's tapped
+      hint.querySelector("span").lastChild.textContent = "Tippe, um weiterzugehen";
+    });
+
+    // Tap anywhere to continue (after unlocked)
+    // Avoid interfering with button taps & choco kiss
+    document.getElementById("app").addEventListener("click", (e)=>{
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+      if(tag === "button") return;
+      if(e.target === kiss || kiss.contains(e.target)) return;
+      next();
+    });
+
+    // Optional: swipe up to continue
+    let touchStartY = null;
+    document.getElementById("app").addEventListener("touchstart", (e)=>{
+      if(!e.touches || !e.touches[0]) return;
+      touchStartY = e.touches[0].clientY;
+    }, {passive:true});
+
+    document.getElementById("app").addEventListener("touchend", (e)=>{
+      if(touchStartY == null) return;
+      const endY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
+      const dy = touchStartY - endY;
+      touchStartY = null;
+      if(dy > 40) next();
+    }, {passive:true});
+
+    // Init
+    setActive(0);
+  </script>
+</body>
+</html>
